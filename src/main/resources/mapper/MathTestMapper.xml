@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shiep.math.core.TestDao.MathTestDao">
+
+    <resultMap id="BaseResultMap" type="com.shiep.math.core.entity.MathSubjectDTO">
+        <!--
+          WARNING - @mbg.generated
+        -->
+        <id column="id" jdbcType="BIGINT" property="id"/>
+        <result column="math_subject" jdbcType="VARCHAR" property="mathSubject"/>
+        <result column="math_type" jdbcType="VARCHAR" property="mathType"/>
+        <result column="math_origin" jdbcType="VARCHAR" property="mathOrigin"/>
+    </resultMap>
+
+    <insert id="saveMath">
+        INSERT INTO math_subject_info
+        (
+        math_subject
+        )
+        VALUES
+        (
+        #{mathSubject}
+        )
+    </insert>
+
+    <select id="getResult" resultMap="BaseResultMap">
+        SELECT id,math_subject,math_type,math_origin
+        FROM math_subject_info
+        WHERE
+        <bind name="pattern" value="'%' + mathSubject + '%'" />
+        math_subject LIKE #{pattern}
+    </select>
+
+    <select id="getSubject" resultType="java.lang.String">
+        SELECT math_subject
+        FROM math_subject_info
+        WHERE id = #{id}
+    </select>
+</mapper>
