@@ -9,7 +9,7 @@ public interface TestService {
 
     void saveMath(String param);
 
-    Page getResult(String param,List<Integer> saveSubjrct) throws Exception;
+//    Page getResult(String param,List<Integer> saveSubjrct) throws Exception;
 
     StringBuffer getSubject(List<Integer> saveSubjrct);
 

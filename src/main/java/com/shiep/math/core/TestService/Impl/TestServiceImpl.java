@@ -5,7 +5,6 @@ import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.shiep.math.core.TestDao.MathTestDao;
 import com.shiep.math.core.TestService.TestService;
-import com.shiep.math.core.entity.MathSubjectDTO;
 import com.shiep.math.core.utils.Base64Utils;
 import com.shiep.math.core.utils.HtmlToWordUtils;
 import com.shiep.math.core.utils.NoHtmlUtils;
@@ -42,24 +41,24 @@ public class TestServiceImpl implements TestService {
         mathTestDao.saveMath(mathSubject);
     }
 
-    @Override
-    public Page getResult(String param,List<Integer> saveSubjrct) throws Exception {
-        JSONObject jo = JSON.parseObject(param);
-        String mathSubject = jo.getString("mathSubject");
-        Integer pageNum = jo.getInteger("pageNum");
-        Integer pageSize = jo.getInteger("pageSize");
-        if(null == pageNum || null == pageSize){
-            throw new Exception("分页参数不能为空");
-        }
-        PageHelper.startPage(pageNum,pageSize,true);
-        List<MathSubjectDTO> mathSubjectDTOS = mathTestDao.getResult(mathSubject);
-
-        for(int i=0;i<mathSubjectDTOS.size();i++){
-            mathSubjectDTOS.get(i).setMathSubjectFormat(NoHtmlUtils.NoHTML(mathSubjectDTOS.get(i).getMathSubject()));
-            mathSubjectDTOS.get(i).setSelectValue("");
-        }
-        return (Page) mathSubjectDTOS;
-    }
+//    @Override
+//    public Page getResult(String param,List<Integer> saveSubjrct) throws Exception {
+//        JSONObject jo = JSON.parseObject(param);
+//        String mathSubject = jo.getString("mathSubject");
+//        Integer pageNum = jo.getInteger("pageNum");
+//        Integer pageSize = jo.getInteger("pageSize");
+//        if(null == pageNum || null == pageSize){
+//            throw new Exception("分页参数不能为空");
+//        }
+//        PageHelper.startPage(pageNum,pageSize,true);
+//        List<MathSubjectDTO> mathSubjectDTOS = mathTestDao.getResult(mathSubject);
+//
+//        for(int i=0;i<mathSubjectDTOS.size();i++){
+//            mathSubjectDTOS.get(i).setMathSubjectFormat(NoHtmlUtils.NoHTML(mathSubjectDTOS.get(i).getMathSubject()));
+//            mathSubjectDTOS.get(i).setSelectValue("");
+//        }
+//        return (Page) mathSubjectDTOS;
+//    }
 
     @Override
     public StringBuffer getSubject(List<Integer> saveSubjrct) {

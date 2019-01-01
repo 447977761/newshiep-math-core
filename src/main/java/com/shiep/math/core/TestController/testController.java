@@ -6,7 +6,6 @@ import com.alibaba.fastjson.JSONObject;
 import com.github.pagehelper.Page;
 import com.shiep.math.core.TestService.TestService;
 import com.shiep.math.core.common.ResponseEntity;
-import com.shiep.math.core.entity.MathSubjectDTO;
 import com.shiep.math.core.utils.Base64Utils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -70,14 +69,14 @@ public class testController {
         return re;
     }
 
-    @RequestMapping("/getResult")
-    public ResponseEntity getResult(@RequestBody String param) throws Exception {
-        ResponseEntity re = new ResponseEntity();
-        Page mathSubjectDTO = testService.getResult(param,saveSubjrct);
-        re.setResult(mathSubjectDTO);
-        re.setSuccess(true);
-        return re;
-    }
+//    @RequestMapping("/getResult")
+//    public ResponseEntity getResult(@RequestBody String param) throws Exception {
+//        ResponseEntity re = new ResponseEntity();
+//        Page mathSubjectDTO = testService.getResult(param,saveSubjrct);
+//        re.setResult(mathSubjectDTO);
+//        re.setSuccess(true);
+//        return re;
+//    }
 
     @RequestMapping("/saveSubject")
     public void saveSubject(@RequestBody String param) throws Exception {
